@@ -1,0 +1,22 @@
+<page title="Home">
+
+  <body: class="front-page"/>
+
+  <content:>
+    <header class="content-header">
+      <h1>Powered by Hobo</h1>
+      <section class="welcome-message">
+        <h3>Here is what you can do:</h3>
+        <ul>
+          <li>Create and maintain any number of Projects</li>
+          <li>Associate Requirements to each Project</li>
+          <li>Assign Tasks and assign people to complete each Task</li>
+        </ul>
+      </section>
+    </header>
+
+    <section class="content-body">
+    </section>
+  </content:>
+  
+</page>
