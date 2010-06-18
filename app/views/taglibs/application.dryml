@@ -7,3 +7,19 @@
 <set-theme name="clean"/>
 
 <def tag="app-name">The Agile Project Manager</def>
+
+<extend tag="card" for="Task">
+  <old-card merge>
+    <append-body:>
+      <div class="users">
+        Assigned users: 
+        <repeat:users join=", ">
+          <a />
+        </repeat>
+        <else>
+          None
+        </else>
+      </div>
+    </append-body:>
+  </old-card>
+</extend>

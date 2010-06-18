@@ -1,0 +1,10 @@
+<show-page>
+  <collection: replace>
+    <table-plus with="&@requirements" fields="this,status">
+      <status-view:>
+        <editor />
+      </status-view:>
+      <empty-message:>No requirements match your criteria.</empty-message:>
+    </table-plus>
+  </collection:>
+</show-page>

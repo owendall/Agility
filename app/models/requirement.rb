@@ -5,7 +5,7 @@ class Requirement < ActiveRecord::Base
   fields do
     title  :string
     body   :text
-    status :string
+    status enum_string(:proposed, :accepted, :rejected, :reviewing, :developing, :completed)
     timestamps
   end
 
