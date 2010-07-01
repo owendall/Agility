@@ -6,6 +6,7 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Project"><ht key="projects.nav_item">Projects</ht></nav-item>
+    <nav-item with="&RequirementStatus"><ht key="requirement_statuses.nav_item">Requirement Statuses</ht></nav-item>
     <nav-item with="&User"><ht key="users.nav_item">Users</ht></nav-item>
   </navigation>
 </def>
@@ -147,6 +148,119 @@
 
 
 
+<!-- ====== RequirementStatus Pages ====== -->
+
+<def tag="index-page" for="RequirementStatus">
+  <page merge title="#{ht 'requirement_statuses.index.title', :default=>['Requirement Statuses'] }">
+    <body: class="index-page requirement-status" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="requirement_statuses.index.heading">
+            Requirement Statuses
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="requirement_statuses.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="requirement_statuses.actions.new">New Requirement Status</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="RequirementStatus">
+  <page merge title="#{ht 'requirement_statuses.new.title', :default=>[' New Requirement Status'] }">
+    <body: class="new-page requirement-status" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="requirement_statuses.new.heading">
+            New Requirement Status
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'requirement_statuses.actions.create', :default=>['Create Requirement Status']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="RequirementStatus">
+  <page merge title="#{ht 'requirement_statuses.show.title', :default=>['Requirement Status'] }">
+
+    <body: class="show-page requirement-status" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="requirement_statuses.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+          </header>
+
+          <section param="content-body">
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="RequirementStatus">
+  <page merge title="#{ht 'requirement_statuses.edit.title', :default=>['Edit Requirement Status'] }">
+
+    <body: class="edit-page requirement-status" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="requirement_statuses.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'requirement_statuses.actions.delete', :default=>['Remove This Requirement Status']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Requirement Pages ====== -->
 
 <def tag="index-page" for="Requirement">
@@ -242,7 +356,7 @@
                 </ht>
               </h3>
 
-              <collection:tasks param/>
+              <sortable-collection:tasks param="collection"/>
 
               <section param="add-to-collection" if="&can_create?(@requirement.tasks)">
                 <h3 param="add-form-heading">
@@ -414,6 +528,7 @@
           </header>
 
           <section param="content-body" with-flash-messages>
+            <field-list fields="due_at" param/>
             <section param="collection-section">
               <h3 param="collection-heading">
                 <ht key="tasks.collection.heading.other" >

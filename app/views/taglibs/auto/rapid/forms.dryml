@@ -12,10 +12,22 @@
 
 
 
+<def tag="form" for="RequirementStatus">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name" param/>
+    <div param="actions">
+      <submit label="#{ht 'requirement_statuses.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Requirement">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title, body, status, project" param/>
+    <field-list fields="title, body, project, status" param/>
     <div param="actions">
       <submit label="#{ht 'requirements.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -27,7 +39,7 @@
 <def tag="form" for="Task">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, requirement, users" param/>
+    <field-list fields="name, due_at, requirement, users" param/>
     <div param="actions">
       <submit label="#{ht 'tasks.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

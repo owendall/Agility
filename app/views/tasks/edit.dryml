@@ -1,0 +1,5 @@
+<edit-page>
+  <form:>
+    <cancel: with="&this.requirement" />
+  </form:>
+</edit-page>

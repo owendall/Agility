@@ -4,12 +4,19 @@ class Task < ActiveRecord::Base
 
   fields do
     name :string
+    due_at :datetime
     timestamps
   end
+
+  validates_datetime :due_at, :on_or_after => lambda { Time.now }
 
   belongs_to :requirement, :index => 'requirement_task_index'
   has_many :task_assignments, :dependent => :destroy
   has_many :users, :through => :task_assignments, :accessible => true
+
+  acts_as_list :scope => :requirement
+
+  never_show :position
 
   # --- Permissions --- #
 

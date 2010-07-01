@@ -5,12 +5,13 @@ class Requirement < ActiveRecord::Base
   fields do
     title  :string
     body   :text
-    status enum_string(:proposed, :accepted, :rejected, :reviewing, :developing, :completed)
+    # status enum_string(:proposed, :accepted, :rejected, :reviewing, :developing, :completed)
     timestamps
   end
 
   belongs_to :project, :index => 'requirement_project_index'
-  has_many :tasks, :dependent => :destroy
+  belongs_to :status, :class_name => 'RequirementStatus', :index => 'requirement_status_index'
+  has_many :tasks, :dependent => :destroy, :order => :position
 
   # --- Permissions --- #
 
